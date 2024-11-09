@@ -1,0 +1,16 @@
+html[dir='ltr'] {
+    * {
+        font-family: "Montserrat", sans-serif !important;
+
+    }
+
+    body {
+        direction: ltr;
+        font-family: "Montserrat", sans-serif !important;
+
+    }
+
+    .v-locale--is-ltr {
+        direction: ltr !important;
+    }
+}

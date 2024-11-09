@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html[dir=ltr] * {
+  font-family: "Montserrat", sans-serif !important;
+}
+html[dir=ltr] body {
+  direction: ltr;
+  font-family: "Montserrat", sans-serif !important;
+}
+html[dir=ltr] .v-locale--is-ltr {
+  direction: ltr !important;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "cairo", sans-serif !important;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  direction: rtl;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  font-family: "cairo", sans-serif !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #EAA121;
+  border-radius: 0px;
+  height: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+html,
+body,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  font-size: 100%;
+  scroll-behavior: auto !important;
+  text-transform: capitalize;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+
+* {
+  text-transform: capitalize;
+}
+
+thead {
+  font-weight: 600;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+*:focus,
+select:focus,
+.custom-select:focus,
+button:focus,
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.filter__section .flight__type .v-selection-control-group {
+  justify-content: center !important;
+  align-content: center !important;
+  gap: 56px;
+}
+.filter__section .flight__type label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333 !important;
+  opacity: 1 !important;
+}
+.filter__section .flight_from .v-field__overlay,
+.filter__section .flight_to .v-field__overlay,
+.filter__section .calender .v-field__overlay {
+  background-color: transparent !important;
+}
+.filter__section .flight_from .v-field__append-inner i,
+.filter__section .flight_to .v-field__append-inner i,
+.filter__section .calender .v-field__append-inner i {
+  display: none;
+}
+.filter__section .flight_from .v-field--variant-filled .v-field__outline::before,
+.filter__section .flight_to .v-field--variant-filled .v-field__outline::before,
+.filter__section .calender .v-field--variant-filled .v-field__outline::before {
+  display: none;
+}
+.filter__section .flight_from .v-field--variant-filled .v-field__outline::after,
+.filter__section .flight_from .v-field--variant-underlined .v-field__outline::after,
+.filter__section .flight_to .v-field--variant-filled .v-field__outline::after,
+.filter__section .flight_to .v-field--variant-underlined .v-field__outline::after,
+.filter__section .calender .v-field--variant-filled .v-field__outline::after,
+.filter__section .calender .v-field--variant-underlined .v-field__outline::after {
+  border-color: #EAA121;
+}
+.filter__section .calender .v-input {
+  width: 100% !important;
+}
+.filter__section .v-label.v-field-label {
+  margin-inline-start: 0 !important;
+  color: #7C8DB0 !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+.filter__section .v-field__input {
+  padding-inline: 0 !important;
+}
+@media (max-width: 520px) {
+  .filter__section .v-field__input {
+    min-height: auto !important;
+  }
+}
+.filter__section .filter__items {
+  flex-wrap: nowrap;
+}
+@media (max-width: 1024px) {
+  .filter__section .filter__items {
+    flex-wrap: wrap;
+  }
+}
+.filter__section .v-input {
+  display: flex !important;
+}
+.filter__section .v-input .v-input__control {
+  width: 100% !important;
+}
+.filter__section .v-locale--is-ltr {
+  direction: rtl !important;
+}
+
+.custom-dropdown-container {
+  background-color: red !important;
+}/*# sourceMappingURL=main.css.map */
