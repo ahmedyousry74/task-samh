@@ -13,6 +13,7 @@
             loading="lazy"
           />
         </nuxt-link>
+        
       </div>
       <div class="flex lg:hidden">
         <button
