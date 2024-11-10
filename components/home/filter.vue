@@ -1,5 +1,7 @@
 <template>
-  <div class="filter__section sm:mt-[64px] mt-[24px] sm:px-[40px] px-[15px] w-full">
+  <div
+    class="filter__section sm:mt-[64px] mt-[24px] sm:px-[40px] px-[15px] w-full"
+  >
     <div
       class="bg-white md:rounded-[0] md:rounded-tl-[16px] md:rounded-br-[16px] rounded-[16px] pt-[20px] pb-[24px] px-[16px] border border-solid border-[#06162D40]"
     >
@@ -13,14 +15,8 @@
           hide-details
           color="#EAA121"
         >
-          <v-radio
-            :label="$t('one_way')"
-            :value="1"
-          ></v-radio>
-          <v-radio
-            :label="$t('round_trip')"
-            :value="2"
-          ></v-radio>
+          <v-radio :label="$t('one_way')" :value="1"></v-radio>
+          <v-radio :label="$t('round_trip')" :value="2"></v-radio>
         </v-radio-group>
       </div>
       <hr class="h-[1px] opacity-[20%] bg-primary-color" />
@@ -30,9 +26,11 @@
         <div class="flex justify-start items-start flex-col w-full flight_from">
           <div class="flex justify-start items-center flex-row gap-2">
             <img src="/images/plane-up.svg" alt="plane" loading="lazy" />
-            <span class="text-third-color font-bold text-[16px]"> {{$t('from')}} </span>
+            <span class="text-third-color font-bold text-[16px]">
+              {{ $t("from") }}
+            </span>
           </div>
-          <v-select
+          <v-autocomplete
             class="w-full"
             :label="$t('flight_from')"
             hide-details
@@ -41,12 +39,14 @@
             :item-value="(type) => type.value"
             :direction="direction"
           >
-          </v-select>
+          </v-autocomplete>
         </div>
         <div class="flex justify-start items-start flex-col w-full flight_to">
           <div class="flex justify-start items-center flex-row gap-2">
             <img src="/images/plane-down.svg" alt="plane" loading="lazy" />
-            <span class="text-third-color font-bold text-[16px]"> {{$t('to')}} </span>
+            <span class="text-third-color font-bold text-[16px]">
+              {{ $t("to") }}
+            </span>
           </div>
           <v-autocomplete
             class="w-full"
@@ -55,14 +55,14 @@
             :items="flightCountries"
             :item-title="(type) => type.name"
             :item-value="(type) => type.value"
-            content-class="custom-dropdown-container"
-            outlined
           ></v-autocomplete>
         </div>
         <div class="flex justify-start items-start flex-col w-full calender">
           <div class="flex justify-start items-center flex-row gap-2">
             <img src="/images/calender.svg" alt="plane" loading="lazy" />
-            <span class="text-third-color font-bold text-[16px]"> {{$t('depart')}} </span>
+            <span class="text-third-color font-bold text-[16px]">
+              {{ $t("depart") }}
+            </span>
           </div>
           <v-date-input
             label="DD/MM/YYYY"
@@ -74,7 +74,9 @@
         <div class="flex justify-start items-start flex-col w-full calender">
           <div class="flex justify-start items-center flex-row gap-2">
             <img src="/images/calender.svg" alt="plane" loading="lazy" />
-            <span class="text-third-color font-bold text-[16px]"> {{$t('return')}} </span>
+            <span class="text-third-color font-bold text-[16px]">
+              {{ $t("return") }}
+            </span>
           </div>
           <v-date-input
             label="DD/MM/YYYY"
@@ -87,20 +89,44 @@
           <div class="flex justify-start items-center flex-row gap-2">
             <img src="/images/airline.svg" alt="plane" loading="lazy" />
             <span class="text-third-color font-bold text-[16px]">
-              {{$t('class')}}
+              {{ $t("class") }}
             </span>
           </div>
           <v-autocomplete
+            v-model="selectedItem"
             class="w-full"
             :label="$t('class')"
             hide-details
-            :items="flightCountries"
-            :item-title="(type) => type.name"
-            :item-value="(type) => type.value"
-          ></v-autocomplete>
+            :items="ClassTraveleers"
+            item-value="id"
+            item-text="name"
+            chips
+          >
+            <template v-slot:chip="{ props, item }">
+              <v-chip variant="text" v-bind="props" :text="item.raw.name" class="!m-0 !p-0 !text-[15px]">
+              </v-chip>
+            </template>
+
+            <template v-slot:item="{ props, item }">
+              <v-list-item
+                v-bind="props"
+                :prepend-avatar="item.raw.avatar"
+                :title="item.raw.name"
+              ></v-list-item>
+            </template>
+          </v-autocomplete>
         </div>
-        <v-btn variant="outlined" class="!bg-primary-color flex justify-center items-center flex-row rounded-[4px] border-0 !w-[64px] !h-[48px] !p-0 tablet:!bg-second-color tablet:!w-full tablet:mt-[16px] mobile:!bg-second-color mobile:!w-full mobile:mt-[16px]">
-          <img src="/images/search.svg" alt="search" loading="lazy" width="24" height="24">
+        <v-btn
+          variant="outlined"
+          class="!bg-primary-color flex justify-center items-center flex-row rounded-[4px] border-0 !w-[64px] !h-[48px] !p-0 tablet:!bg-second-color tablet:!w-full tablet:mt-[16px] mobile:!bg-second-color mobile:!w-full mobile:mt-[16px]"
+        >
+          <img
+            src="/images/search.svg"
+            alt="search"
+            loading="lazy"
+            width="24"
+            height="24"
+          />
         </v-btn>
       </div>
     </div>
@@ -110,7 +136,7 @@
 <script setup>
 const { locales, locale, setLocale } = useI18n();
 const direction = computed(() => (locale.value === "ar" ? "rtl" : "ltr"));
-
+const selectedItem = ref(null);
 import { VDateInput } from "vuetify/labs/VDateInput";
 const flightType = ref(2);
 const flightTypeARR = ref([
@@ -144,6 +170,29 @@ const flightCountries = ref([
     id: 4,
     name: "UAE",
     value: "4",
+  },
+]);
+
+const ClassTraveleers = ref([
+  {
+    id: 1,
+    name: "1 adult, Economy",
+    avatar: "/images/family.svg",
+  },
+  {
+    id: 2,
+    name: "1 adult, Class",
+    avatar: "/images/family.svg",
+  },
+  {
+    id: 3,
+    name: "2 adult, Economy",
+    avatar: "/images/family.svg",
+  },
+  {
+    id: 4,
+    name: "2 adult, Class",
+    avatar: "/images/family.svg",
   },
 ]);
 </script>

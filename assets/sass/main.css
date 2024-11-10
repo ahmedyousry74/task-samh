@@ -282,7 +282,20 @@ input[type=number]:focus,
 .filter__section .v-locale--is-ltr {
   direction: rtl !important;
 }
+.filter__section .v-autocomplete .v-autocomplete__selection-text, .filter__section .v-input--density-default .v-field__input {
+  color: #7C8DB0 !important;
+}
 
 .custom-dropdown-container {
   background-color: red !important;
+}
+
+.v-autocomplete__content .v-avatar.v-avatar--density-default {
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 0 !important;
+}
+.v-autocomplete__content .v-avatar .v-img {
+  height: 20px !important;
+  width: 20px !important;
 }/*# sourceMappingURL=main.css.map */
