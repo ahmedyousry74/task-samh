@@ -65,7 +65,7 @@ useHead({
       name: "keywords",
       content: "travel, destinations, blog, tourism, popular places, indonesia",
     },
-    { property: "og:title", content: "Popular Destinations" },
+    { property: "og:title", content: "Goose Flight" },
     {
       property: "og:description",
       content:

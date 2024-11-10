@@ -214,6 +214,9 @@ input[type="number"]:focus,
             justify-content: center !important;
             align-content: center !important;
             gap: 56px;
+            @media(max-width: 580px){
+                gap: 10px;
+            }
         }
 
         label {
@@ -221,6 +224,10 @@ input[type="number"]:focus,
             font-weight: 600;
             color: $third-color !important;
             opacity: 1 !important;
+            @media(max-width: 580px){
+                font-size: 14px;
+                
+            }
         }
     }
 
