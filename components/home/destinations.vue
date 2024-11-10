@@ -3,9 +3,9 @@
     class="md:px-[80px] px-[24px] flex justify-start items-start flex-col md:gap-[43px] gap-[28px] pb-[80px]"
   >
     <div class="flex justify-start items-start flex-col gap-2">
-      <h2 class="text-second-color md:text-[36px] text-[24px] font-semibold">
+      <h1 class="text-second-color md:text-[36px] text-[24px] font-semibold">
         {{ $t("popular_destinations") }}
-      </h2>
+      </h1>
       <p class="text-second-color md:text-[16px] text-[14px] font-normal">
         {{ $t("popular_text") }}
       </p>
@@ -34,9 +34,9 @@
               loading="lazy"
               class="w-[20px] h-[20px]"
             />
-            <h1 class="text-fifth-color font-normal text-[14px]">
+            <h2 class="text-fifth-color font-normal text-[14px]">
               {{ blog.location }}
-            </h1>
+            </h2>
           </div>
           <h3 class="text-second-color font-[700] text-[16px] mb-[4px]">
             {{ blog.title }}
@@ -54,6 +54,30 @@
 </template>
 
 <script setup>
+useHead({
+  meta: [
+    {
+      name: "description",
+      content:
+        "Explore popular destinations with detailed information and images.",
+    },
+    {
+      name: "keywords",
+      content: "travel, destinations, blog, tourism, popular places, indonesia",
+    },
+    { property: "og:title", content: "Popular Destinations" },
+    {
+      property: "og:description",
+      content:
+        "Explore popular destinations with detailed information and images.",
+    },
+    {
+      property: "og:image",
+      content: "/images/logo.svg",
+    },
+  ],
+});
+
 const destinations = ref([
   {
     id: 1,
