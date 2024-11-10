@@ -9,7 +9,7 @@
         class="flight__type flex justify-center items-center flex-row w-full md:pb-[24px] pb-[12px]"
       >
         <v-radio-group
-          v-model="flightType"
+          v-model="bookFlight.flightType"
           inline
           class="flex justify-center items-center flex-row w-full"
           hide-details
@@ -31,6 +31,7 @@
             </span>
           </div>
           <v-autocomplete
+           v-model="bookFlight.from"
             class="w-full"
             :label="$t('flight_from')"
             hide-details
@@ -49,6 +50,7 @@
             </span>
           </div>
           <v-autocomplete
+           v-model="bookFlight.to"
             class="w-full"
             :label="$t('where_to')"
             hide-details
@@ -65,6 +67,7 @@
             </span>
           </div>
           <v-date-input
+           v-model="bookFlight.depart"
             label="DD/MM/YYYY"
             prepend-icon=""
             class="w-full"
@@ -79,6 +82,7 @@
             </span>
           </div>
           <v-date-input
+           v-model="bookFlight.return"
             label="DD/MM/YYYY"
             prepend-icon=""
             class="w-full"
@@ -93,7 +97,7 @@
             </span>
           </div>
           <v-autocomplete
-            v-model="selectedItem"
+             v-model="bookFlight.classTravellers"
             class="w-full"
             :label="$t('class')"
             hide-details
@@ -117,6 +121,8 @@
           </v-autocomplete>
         </div>
         <v-btn
+          :loading="loading"
+          @click="book"
           variant="outlined"
           class="!bg-primary-color flex justify-center items-center flex-row rounded-[4px] border-0 !w-[64px] !h-[48px] !p-0 tablet:!bg-second-color tablet:!w-full tablet:mt-[16px] mobile:!bg-second-color mobile:!w-full mobile:mt-[16px]"
         >
@@ -136,9 +142,11 @@
 <script setup>
 const { locales, locale, setLocale } = useI18n();
 const direction = computed(() => (locale.value === "ar" ? "rtl" : "ltr"));
-const selectedItem = ref(null);
+
 import { VDateInput } from "vuetify/labs/VDateInput";
-const flightType = ref(2);
+
+const loading = ref(false);
+
 const flightTypeARR = ref([
   {
     id: 1,
@@ -195,6 +203,27 @@ const ClassTraveleers = ref([
     avatar: "/images/family.svg",
   },
 ]);
+
+const bookFlight = ref({
+  flightType: 2,
+  from: null,
+  to: null,
+  depart: null,
+  return: null,
+  classTravellers: null
+})
+
+const book = async => {
+  loading.value = true;
+  setTimeout(() => {
+    bookFlight.value.from = null;
+    bookFlight.value.to = null;
+    bookFlight.value.depart = null;
+    bookFlight.value.return = null;
+    bookFlight.value.classTravellers = null;
+    loading.value = false;
+  }, 4000);
+}
 </script>
 
 <style lang="scss" scoped>
